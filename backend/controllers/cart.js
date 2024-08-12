@@ -37,12 +37,12 @@ const getcartbook = asyncHandler(async (req, res) => {
     try {
         // Fetch the user from the database using the ID stored in the JWT
         const { id } = req.headers;
-        const userdata = await User.findById(id).populate("favourites");
-        const favouriteBooks = userdata.favourites;
+        const userdata = await User.findById(id).populate("cart");
+        const cart = userdata.cart.reverse();
         
-        return res.status(200).json({ status: "Success", data:favouriteBooks });
+        return res.status(200).json({ status: "Success", data:cart });
     } catch (error) {
-        console.error("Error in adding favrourites books in controller:", error); // Log detailed error
+        console.error("Error to get book from cart:", error); // Log detailed error
          return res.status(500).json({ message: "Server Error", error: error.message }); // Provide error details
     }
 });
