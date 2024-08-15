@@ -2,6 +2,8 @@ const asyncHandler = require("express-async-handler");
 const Book = require("../models/book");
 const User = require("../models/user");
 const jwt = require("jsonwebtoken");
+const mongoose = require('mongoose');
+
 //added book by admin
 const bookadded = asyncHandler(async (req, res) => {
     try {
@@ -53,10 +55,13 @@ const updatebook = asyncHandler(async (req, res) => {
 });
 const deletebook = asyncHandler(async (req, res) => {
     try {
-        // Fetch the user from the database using the ID stored in the JWT
+        const {bookid} = req.headers;
+        await Book.findByIdAndDelete(bookid);
+        return res.status(200).json({message:"Book deleted successfully"})
+       
     
     } catch (error) {
-        console.error("Error in bookadded controller:", error); // Log detailed error
+        console.error("Error in bookdeleted controller:", error); // Log detailed error
         res.status(500).json({ message: "Server Error", error: error.message }); // Provide error details
     }
 });
@@ -64,7 +69,7 @@ const getallbooks = asyncHandler(async (req, res) => {
     try {
     
         
-        const books = await Book.find().sort({ created: -1})
+        const books = await Book.find().sort({ createdAt: -1})
         res.status(200).json({ status:"success", data:books, });
        
     } catch (error) {
@@ -76,7 +81,7 @@ const getrecentbooks = asyncHandler(async (req, res) => {
     try {
     
         
-        const books = await Book.find().sort({ created: -1}).limit(2);
+        const books = await Book.find().sort({ createdAt: -1}).limit(4);
         res.status(200).json({ status:"success", data:books, });
        
     } catch (error) {
@@ -88,7 +93,15 @@ const getbookbyid = asyncHandler(async (req, res) => {
     try {
         // Fetch the user from the database using the ID stored in the JWT
         const { id } = req.params;
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(400).json({ message: "Invalid ID format" });
+        }
+        
         const book = await Book.findById(id);
+        if (!book) {
+            return res.status(404).json({ message: "Book not found" });
+        }
+        
         res.status(200).json({ status: "success" , data:book});
     } catch (error) {
         console.error("Error in getbook by id controller:", error); // Log detailed error
