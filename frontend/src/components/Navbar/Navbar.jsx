@@ -45,7 +45,7 @@ const Navbar = () => {
                 to="SignUp"
                 className='px-4 py-1 border bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300 '>SignUp</Link>
             </div>
-            <button className='2xl hover:text-zinc-400' onClick={() => (MobileNav === "hidden" ? setMobileNav("block"): setMobileNav("hidden"))} > <FaGripLines /></button>
+            <button className='2xl hover:text-zinc-400 md:hidden block' onClick={() => (MobileNav === "hidden" ? setMobileNav("block"): setMobileNav("hidden"))} > <FaGripLines /></button>
         </div>
     </nav>
     <div className={`${MobileNav} z-40 bg-zinc-800 h-screen absolute top-0 left-0 w-full flex flex-col items-center justify-center` }>
@@ -55,7 +55,7 @@ const Navbar = () => {
              
                 <Link
                 to="/SignIn"
-                 className={`${MobileNav}px-4 py-3 mb-8 text-3xl font-semibold border border-blue-500 rounded hover:bg-white  text-white hover:text-zinc-800 transition-all duration-300 `}>SignIn</Link>
+                 className={`${MobileNav} px-4 py-3 mb-8 text-3xl font-semibold border border-blue-500 rounded hover:bg-white  text-white hover:text-zinc-800 transition-all duration-300 `}>SignIn</Link>
                 <Link 
                 to="SignUp"
                 className={`${MobileNav} px-4 py-3 mb-8 text-3xl font-semibold border bg-blue-500 rounded hover:bg-white text-white hover:text-zinc-800 transition-all duration-300 `}>SignUp</Link>
