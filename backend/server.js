@@ -9,7 +9,7 @@ const port = process.env.PORT ||5000;
 app.use(cors({
     origin: 'http://localhost:5173', // The origin of your frontend application
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'], // Ensure 'Authorization' is included
+    allowedHeaders: ['Content-Type', 'Authorization','id','bookid'], // Ensure 'Authorization' is included
   }));
 app.use(express.json());
 app.use("/api/users", require("./routes/user"));
