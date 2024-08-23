@@ -30,6 +30,9 @@ const getorderhistory = asyncHandler(async (req, res) => {
         // Fetch the user from the database using the ID stored in the JWT
         const { id } = req.headers;
         const userdata = await User.findById(id).populate({path:"orders",populate: {path:"book"}});
+        if (!userdata) {
+            return res.status(404).json({ message: "User not found" });
+        }
         const orderdata = userdata.orders.reverse();
         
         return res.status(200).json({ status: "Success", data:orderdata});
