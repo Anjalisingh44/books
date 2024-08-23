@@ -1,9 +1,15 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { AiOutlineLogout } from "react-icons/ai";
+import { useDispatch } from 'react-redux';
+import { authAction } from '../../store/auth';
+
+
 
 
 const Sidebar = ({data}) => {
+  const dispatch = useDispatch();
+   const navigate = useNavigate();
   
   return (
     <div className='bg-zinc-800 p-3 rounded flex flex-col items-center justify-between h-[100%] '>
@@ -32,7 +38,14 @@ const Sidebar = ({data}) => {
 
       </div>
      
-     <button className='bg-zinc-900 w-3/6 lg:w-full mt-4 lg:mt-20 text-white font-semibold flex items-center justify-center py-2 rounded hover:bg-white hover:text-zinc-900 transistion-all duration-300 '>
+     <button className='bg-zinc-900 w-3/6 lg:w-full mt-4 lg:mt-20 text-white font-semibold flex items-center justify-center py-2 rounded hover:bg-white hover:text-zinc-900 transistion-all duration-300 ' onClick={() => {
+      dispatch(authAction.logout());
+      dispatch(authAction.changeRole("user"));
+      localStorage.clear("id");
+      localStorage.clear("token")
+      localStorage.clear("role");
+      navigate("/");
+     }}>
     
         Log Out
         <AiOutlineLogout  className='font-semibold ms-4'/>
