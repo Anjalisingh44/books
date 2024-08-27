@@ -3,10 +3,18 @@ import React, { useState,useEffect } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom'
 import { GrLanguage } from "react-icons/gr";
-
+import { FaShoppingCart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import {useSelector} from "react-redux"
+import { FaEdit } from "react-icons/fa";
+import { MdDelete } from "react-icons/md";
 const ViewBookDetails = () => {
   const {id}= useParams();
   const [data, setData] = useState([]);
+const isSiggnedIn = useSelector((state)=> state.auth.isSiggnedIn);
+const role = useSelector((state) => state.auth.role);
+
+
 
   useEffect(() => {
   const fetch = async () => {
@@ -22,10 +30,58 @@ fetch();
 }, 
 []);
 
+const handleFavourite = async ()=>{
+  try {
+    const response = await axios.put("http://localhost:1000/api/users/favourite-book", {}, {
+      headers: {
+        id: localStorage.getItem("id"),
+        Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+        bookid: id,
+      },
+    });
+    alert(response.data.message); // Display the response message
+  } catch (error) {
+    console.error("Error adding to favourites:", error);
+    alert("Failed to add the book to favourites.");
+  }
+};
+const handleCart = async () =>{
+  const response = await axios.put("http://localhost:1000/api/users/add-to-cart",{},{
+    headers: {
+      id: localStorage.getItem("id"),
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      bookid: id,
+    },
+  })
+  alert(response.data.message);
+}
   return (
-    <div className=' px-3 md:px-12 py-8 bg-zinc-900 flex flex-col md:flex-row gap-7'>
-        <div className=' bg-zinc-800 rounded p-4 h-[50vh] lg:h-[88vh] w-full lg:w-3/6 flex items-center justify-center'>{" "}
-        <img src={data.url} alt="/" className=" h-[40vh] lg:h-[75vh] " /></div>
+    <div className=' px-3 md:px-12 py-8 bg-zinc-900 flex flex-col lg:flex-row gap-7'>
+        <div className='flex flex-col lg:flex-row bg-zinc-800 rounded p-4 h-[50vh] lg:h-[88vh] w-full lg:w-3/6 flex items-center justify-center gap-6'>{" "}
+        <img src={data.url} alt="/" className="  h-[35vh] md:h-[40vh] lg:h-[70vh] rounded " />
+      {isSiggnedIn === true && role=="user" && (
+        <div className='flex flex-row lg:flex-col gap-6'>
+        <button  className='bg-white rounded-full text-3xl p-2 text-red-800 text-2xl'  onClick={handleFavourite}>
+      <FaHeart/> 
+      </button>
+      <button  className='bg-blue-500 rounded-full text-3xl p-2 text-white text-2xl '  onClick={handleCart} >
+      <FaShoppingCart/> 
+      </button>
+      </div>
+      )}
+        
+        {isSiggnedIn === true && role=="admin" && (
+        <div className='flex flex-row lg:flex-col gap-6'>
+        <button  className='bg-white rounded-full text-3xl p-2  ' text-2xl  >
+        <FaEdit />
+      </button>
+      <button  className='bg-white rounded-full text-3xl p-2 text-red-500' text-2xl mt-4 >
+      <MdDelete />
+      </button>
+      </div>
+      )}
+        </div>
+       
         <div className='p-4  w-3/6'>
         <h2 className='mt-4 text-4xl text-zinc-100 font-semibold'>{data.title}</h2>
   <p className='mt-4 text-xl text-zinc-400 font-semibold'>{data.author}</p>
