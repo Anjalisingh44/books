@@ -1,15 +1,17 @@
 
 import React, { useState,useEffect } from 'react'
 import axios from 'axios';
-import { useParams } from 'react-router-dom'
+import { useParams,Link } from 'react-router-dom'
 import { GrLanguage } from "react-icons/gr";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import {useSelector} from "react-redux"
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { useNavigate } from 'react-router-dom';
 const ViewBookDetails = () => {
   const {id}= useParams();
+const navigate = useNavigate();
   const [data, setData] = useState([]);
 const isSiggnedIn = useSelector((state)=> state.auth.isSiggnedIn);
 const role = useSelector((state) => state.auth.role);
@@ -20,7 +22,7 @@ const role = useSelector((state) => state.auth.role);
   const fetch = async () => {
     try {
         const response = await axios.get(`http://localhost:1000/api/users/get-book-by-id/${id}`);
-        console.log(response);
+        // console.log(response);
         setData(response.data.data);
     } catch (error) {
         console.error("Error fetching data:", error);
@@ -55,6 +57,17 @@ const handleCart = async () =>{
   })
   alert(response.data.message);
 }
+const deletebook = async () => {
+   const response = await axios.delete("http://localhost:1000/api/users/delete-book",{
+    headers: {
+      id: localStorage.getItem("id"),
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      bookid: id,
+    },
+  })
+  alert(response.data.message);
+  navigate("/all-books");
+}
   return (
     <div className=' px-3 md:px-12 py-8 bg-zinc-900 flex flex-col lg:flex-row gap-7'>
         <div className='flex flex-col lg:flex-row bg-zinc-800 rounded p-4 h-[50vh] lg:h-[88vh] w-full lg:w-3/6 flex items-center justify-center gap-6'>{" "}
@@ -72,10 +85,10 @@ const handleCart = async () =>{
         
         {isSiggnedIn === true && role=="admin" && (
         <div className='flex flex-row lg:flex-col gap-6'>
-        <button  className='bg-white rounded-full text-3xl p-2  ' text-2xl  >
+        <Link to={`/updateBook/${id}`} className='bg-white rounded-full text-3xl p-2  text-2xl'   >
         <FaEdit />
-      </button>
-      <button  className='bg-white rounded-full text-3xl p-2 text-red-500' text-2xl mt-4 >
+      </Link>
+      <button  className='bg-white rounded-full text-3xl p-2 text-red-500 text-2xl mt-4 '  onClick={deletebook}>
       <MdDelete />
       </button>
       </div>
