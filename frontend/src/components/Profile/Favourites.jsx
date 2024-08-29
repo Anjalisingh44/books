@@ -13,22 +13,24 @@ const Favourites = () => {
         
       },
     })
-    setFavouriteBooks(response.data);
+    setFavouriteBooks(response.data.data);
   }
    fetch(); 
 
-  }, [])
+  }, [FavouriteBooks])
   
   return (
-    <div>
+    <div className='grid grid-cols-4  gap-4'>
     {FavouriteBooks.length > 0 ? (
       FavouriteBooks.map((items, i) => (
-        <div key={i}>
-          <Bookcard data={items} />
+        <div  key={i}>
+          <Bookcard data={items} favourite={true} />
         </div>
       ))
-    ) : (
-      <p>No favourite books available.</p>
+      
+    )
+    : (
+      <p className='text-5xl font-semibold text-zinc-500 flex items-center justify-center w-full  '>No favourite books available.</p>
     )}
   </div>
   )
