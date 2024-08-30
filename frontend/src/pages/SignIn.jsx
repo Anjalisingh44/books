@@ -69,10 +69,10 @@ dispatch(authAction.changeRole( response.data.role));
   };
 
   return (
-    <div className='bg-zinc-900 min-h-screen flex items-center justify-center'>
-      <div className='bg-zinc-800 rounded-lg shadow-lg  px-4 w-full max-w-md'>
-        <h2 className='text-2xl font-semibold text-zinc-200 mb-6 '>SignIn</h2>
-        <form className='space-y-5'>
+    <div className='bg-zinc-900 min-h-screen flex items-center justify-center '>
+      <div className='bg-zinc-800 rounded-lg shadow-lg  p-4 w-full max-w-md'>
+        <h2 className='text-2xl font-semibold text-zinc-200 mb-0 p-4 '>SignIn</h2>
+        <form className='space-y-6 p-5'>
          
           <div>
             <label htmlFor="email" className='block text-zinc-200 mb-2'>Email</label>
@@ -106,7 +106,7 @@ dispatch(authAction.changeRole( response.data.role));
             SignIn
           </button>
         </form>
-        <p className='text-center mt-4 text-white'>
+        <p className='text-center m-6 text-white text-xl'>
           Don't have an account?{' '}
           <Link to="/SignUp" className='text-blue-500 hover:underline'>SignUp</Link>
         </p>
