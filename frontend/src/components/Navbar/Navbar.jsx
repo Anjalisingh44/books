@@ -2,31 +2,31 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { FaGripLines } from "react-icons/fa";
 import { useSelector } from 'react-redux';
+import { authAction } from '../../store/auth';
 
 const Navbar = () => {
+    const role = useSelector((state) => state.auth.role);
+    const isSiggnedIn = useSelector((state) => state.auth.isSiggnedIn); 
     const links = [
-        {
-            title: "Home",
-            link:"/",
-        },
-        
-        {
-            title: "AllBooks",
-            link:"/all-books",
-        },
-        {
-            title: "Cart",
-            link:"/cart",
-        },
-        {
-            title: "Profile",
-            link:"/profile",
-        },
-    ];
-   const isSiggnedIn = useSelector((state) => state.auth.isSiggnedIn);
-if(isSiggnedIn === false){
-    links.splice(2,2);
-}
+        { title: "Home", link: "/" },
+        { title: "AllBooks", link: "/all-books" },
+        { title: "Cart", link: "/cart" },
+        { title: "Profile", link: "/profile" },
+        { title: "Admin Profile", link: "/profile" },
+      ].filter((item) => {
+        if (!isSiggnedIn && (item.title === "Cart" || item.title === "Profile" || item.title === "Admin Profile")) {
+          return false;
+        }
+        if (isSiggnedIn && role === "user" && item.title === "Admin Profile") {
+          return false;
+        }
+        if (isSiggnedIn && role === "admin" && item.title === "Profile") {
+          return false;
+        }
+        return true;
+      });
+    
+
     const [MobileNav, setMobileNav] = useState("hidden");
 
   return (
@@ -41,7 +41,7 @@ if(isSiggnedIn === false){
         <div className=' nav-links-bookheaven block  md:flex items-center gap-4 '>
             <div className='  hidden md:flex  gap-4 '>{links.map((items,i) =>(
                 <div className='flex items-center'>
-                {items.title === "Profile" ? (
+                {items.title === "Profile" || items.title ==="Admin Profile" ? (
                    <Link 
                    to={items.link}
                    className=' px-4 py-1 border bg-blue-500 rounded hover:bg-white hover:text-zinc-800 transition-all duration-300 ' key={i}>{items.title}{" "} </Link> 
