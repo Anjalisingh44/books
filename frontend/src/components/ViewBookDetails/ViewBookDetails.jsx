@@ -70,8 +70,8 @@ const deletebook = async () => {
 }
   return (
     <div className=' px-3 md:px-12 py-8 bg-zinc-900 flex flex-col lg:flex-row gap-7'>
-        <div className='flex flex-col lg:flex-row bg-zinc-800 rounded p-4 h-[50vh] lg:h-[88vh] w-full lg:w-3/6 flex items-center justify-center gap-6'>{" "}
-        <img src={data.url} alt="/" className="  h-[35vh] md:h-[40vh] lg:h-[70vh] rounded " />
+        <div className='flex flex-col lg:flex-row bg-zinc-800 rounded p-4 h-[40vh] lg:h-[75vh] w-5/6 lg:w-[45%] flex items-center justify-center gap-6'>{" "}
+        <img src={data.url} alt="/" className="  h-[29vh] md:h-[40vh] lg:h-[47vh] rounded " />
       {isSiggnedIn === true && role=="user" && (
         <div className='flex flex-row lg:flex-col gap-6'>
         <button  className='bg-white rounded-full text-3xl p-2 text-red-800 text-2xl'  onClick={handleFavourite}>
