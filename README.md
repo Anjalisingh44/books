@@ -1,21 +1,24 @@
-# Chat Application
+# BookNest Fullstack Application 
 
-This project is a full-stack chat application that includes both frontend and backend components. It allows users to register, log in, customize avatars, and engage in real-time messaging. The frontend is built with React, while the backend is powered by Node.js, Express, MongoDB, and Socket.io.
+
+Developed a full-stack responsive book application using Node.js, MongoDB, React, and Tailwind CSS. The application allows users to register, log in, view book details, add books to their cart and favorites, place orders, log out, remove books from their cart and favorites. Admin functionalities include adding, updating, and deleting books.
+
+
+
 
 ## Features
 
-- **Real-Time Messaging**: Users can send and receive messages in real-time.
-- **Avatar Customization**: Users can personalize their avatars.
-- **User Registration & Login**: Users can create accounts and log in to the chat application.
-- **Session Management**: Utilizes local storage to maintain user sessions and settings.
-- **Socket.io Integration**: Enables real-time communication between clients and the server.
+**User**: Add/remove books from cart and favorites, place orders, and view order history.
+**Admin**: Manage book inventory with add, update, and delete capabilities.
+Responsive design implemented with Tailwind CSS for a seamless user experience across devices.
+
+-
 
 ## Technologies Used
 
-- **Frontend**: React, HTML, CSS, JavaScript
+- **Frontend**: React, HTML,  JavaScript, Tailwind Css
 - **Backend**: Node.js, Express
 - **Database**: MongoDB
-- **Real-Time Communication**: Socket.io
 - **Session Management**: Local storage
 
 ## Getting Started
@@ -25,13 +28,6 @@ This project is a full-stack chat application that includes both frontend and ba
 - Node.js installed
 - MongoDB database set up
 
-### Installation
-
-#### Backend Setup
-
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/Anjalisingh44/chat.git
 # Home page
 ![Alt Text](/frontend/public/homepage.png)
 ![Alt Text](/frontend/public/homepage2.png)
@@ -48,8 +44,13 @@ This project is a full-stack chat application that includes both frontend and ba
 ![Alt Text](/frontend/public/Orderhistory.png)
 # cart 
 ![Alt Text](/frontend/public/cart.png)
+# Bookdetails
+![Alt Text](/frontend/public/Bookdetails.png)
+# Add book (admin)
+![Alt Text](/frontend/public/addbook.png)
+# Update book (admin)
+![Alt Text](/frontend/public/updatebook.png)
+# Bookdetails admin
+![Alt Text](/frontend/public/bookdetailsadmin.png)
 
 
-# Chat message page
-![Alt Text](/frontend/myapp/public/chatmessage.png)
-![Alt Text](/frontend/myapp/public/chatmessagetoanjali.png)
