@@ -39,9 +39,16 @@ This project is a full-stack chat application that includes both frontend and ba
 ![Alt Text](/frontend/public/signin.png)
 
 # Register page
-![Alt Text](/frontend/public/signup.png)
-# Chat Contanieer page
-![Alt Text](/frontend/myapp/public/chatcontaineer.png)
+![Alt Text](/frontend/public/signuppage.png)
+# All Book
+![Alt Text](/frontend/public/Allbook.png)
+# user profile details
+![Alt Text](/frontend/public/userpanel.png)
+# order history
+![Alt Text](/frontend/public/Orderhistory.png)
+# cart 
+![Alt Text](/frontend/public/cart.png)
+
 
 # Chat message page
 ![Alt Text](/frontend/myapp/public/chatmessage.png)
