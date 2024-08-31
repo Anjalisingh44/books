@@ -52,5 +52,6 @@ Responsive design implemented with Tailwind CSS for a seamless user experience a
 ![Alt Text](/frontend/public/updatebook.png)
 # Bookdetails admin
 ![Alt Text](/frontend/public/bookdetailsadmin.png)
-
+# mob responsive
+![Alt Text](/frontend/public/mobresponsive.png)
 
