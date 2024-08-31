@@ -60,18 +60,29 @@ const Userorderhistory = () => {
                   <p className=''>{i + 1}</p>
                 </div>
                 <div className='w-[22%]'>
-                  <Link to={`/view-book-details/${items.book._id}`}>
-                  {items.book.title}
-                  </Link>
-
-                </div>
+                {items.book ? (
+    <Link to={`/view-book-details/${items.book._id}`}>
+      {items.book.title}
+    </Link>
+  ) : (
+    <p>Book not available</p>
+  )}
+</div>
                 
                 <div className='w-[45%]'>
-                  <p>{items.book.desc.slice(0, 30)}....</p>
-                </div>
+                {items.book ? (
+    <p>{items.book.desc.slice(0, 30)}....</p>
+  ) : (
+    <p>Description not available</p>
+  )}
+</div>
                 <div className='w-[9%]'>
-                  <p>  Rs {items.book.price}</p>
-                </div>
+                {items.book ? (
+    <p>Rs {items.book.price}</p>
+  ) : (
+    <p>Price not available</p>
+  )}
+</div>
                 <div className='w-[16%]'>
                 <h1 className='font-semibold text-green-500'>
                   {items.status === "Order placed" ? (
