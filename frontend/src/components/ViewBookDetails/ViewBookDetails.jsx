@@ -21,7 +21,7 @@ const role = useSelector((state) => state.auth.role);
   useEffect(() => {
   const fetch = async () => {
     try {
-        const response = await axios.get(`http://localhost:1000/api/users/get-book-by-id/${id}`);
+        const response = await axios.get(`https://books-1hil.onrender.com/api/users/get-book-by-id/${id}`);
         // console.log(response);
         setData(response.data.data);
     } catch (error) {
@@ -34,7 +34,7 @@ fetch();
 
 const handleFavourite = async ()=>{
   try {
-    const response = await axios.put("http://localhost:1000/api/users/favourite-book", {}, {
+    const response = await axios.put("https://books-1hil.onrender.com/api/users/favourite-book", {}, {
       headers: {
         id: localStorage.getItem("id"),
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -48,7 +48,7 @@ const handleFavourite = async ()=>{
   }
 };
 const handleCart = async () =>{
-  const response = await axios.put("http://localhost:1000/api/users/add-to-cart",{},{
+  const response = await axios.put("https://books-1hil.onrender.com/api/users/add-to-cart",{},{
     headers: {
       id: localStorage.getItem("id"),
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -58,7 +58,7 @@ const handleCart = async () =>{
   alert(response.data.message);
 }
 const deletebook = async () => {
-   const response = await axios.delete("http://localhost:1000/api/users/delete-book",{
+   const response = await axios.delete("https://books-1hil.onrender.com/api/users/delete-book",{
     headers: {
       id: localStorage.getItem("id"),
       Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

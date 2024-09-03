@@ -9,7 +9,7 @@ const AllBooks = () => {
   useEffect(() => {
       const fetch = async () => {
           try {
-              const response = await axios.get("http://localhost:1000/api/users/get-all-book");
+              const response = await axios.get("https://books-1hil.onrender.com/api/users/get-all-book");
               setData(response.data.data);
           } catch (error) {
               console.error("Error fetching data:", error);

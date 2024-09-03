@@ -6,7 +6,7 @@ const Userorderhistory = () => {
   const [orderHistory, setorderHistory] = useState([]);
   useEffect(()=> {
     const fetch = async()=>{
-    const res =  await axios.get("http://localhost:1000/api/users/get-order-history",{
+    const res =  await axios.get("https://books-1hil.onrender.com/api/users/get-order-history",{
       headers: {
         id: localStorage.getItem("id"),
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

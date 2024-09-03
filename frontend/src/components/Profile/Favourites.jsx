@@ -6,7 +6,7 @@ const Favourites = () => {
   const [FavouriteBooks, setFavouriteBooks] = useState([]);
   useEffect(() => {
   const fetch = async () =>{
-    const response = await axios.get("http://localhost:1000/api/users/get-book-from-favourite",{
+    const response = await axios.get("https://books-1hil.onrender.com/api/users/get-book-from-favourite",{
       headers: {
         id: localStorage.getItem("id"),
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

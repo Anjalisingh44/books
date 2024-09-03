@@ -47,7 +47,7 @@ const Cart = () => {
   const Placeorder = async()=> {
     try {
       const res = await axios.post(
-        "http://localhost:1000/api/users/place-order", 
+        "https://books-1hil.onrender.com/api/users/place-order", 
         { order: Cart },
         {
           headers: {

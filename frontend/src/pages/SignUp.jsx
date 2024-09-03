@@ -26,7 +26,7 @@ const SignUp = () => {
         return;
       }
 
-      const response = await axios.post("http://localhost:1000/api/users/signup", Values);
+      const response = await axios.post("https://books-1hil.onrender.com/api/users/signup", Values);
 
       if (response.data && response.data.message) {
         alert(response.data.message);

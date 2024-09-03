@@ -7,7 +7,7 @@ const Profile = () => {
   const [Profile, setProfile] = useState();
   const fetchUserData = async () => {
     try {
-      const response = await axios.get("http://localhost:1000/api/users/get-user-information", {
+      const response = await axios.get("https://books-1hil.onrender.com/api/users/get-user-information", {
         headers: {
           id: localStorage.getItem("id"),
           Authorization: `Bearer ${localStorage.getItem("accessToken")}`,

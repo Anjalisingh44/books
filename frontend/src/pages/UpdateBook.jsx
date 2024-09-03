@@ -26,7 +26,7 @@ const navigate = useNavigate();
       ){
         alert("All field are required");
       }else{
-        const response = await axios.put("http://localhost:1000/api/users/update-book", Data, {
+        const response = await axios.put("https://books-1hil.onrender.com/api/users/update-book", Data, {
           headers: {
             id: localStorage.getItem("id"),
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -52,7 +52,7 @@ const navigate = useNavigate();
   }
   useEffect(() => {
     const fetch = async () =>{
-const response = await axios.get(`http://localhost:1000/api/users//get-book-by-id/${id}`)
+const response = await axios.get(`https://books-1hil.onrender.com/api/users//get-book-by-id/${id}`)
 setData(response.data.data)
     }
     fetch();
