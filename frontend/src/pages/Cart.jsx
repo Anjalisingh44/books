@@ -11,7 +11,7 @@ const Cart = () => {
   useEffect(() => {
     const fetch = async () => {
       try {
-        const res = await axios.get("http://localhost:1000/api/users/get-from-cart", {
+        const res = await axios.get("https://books-1hil.onrender.com/api/users/get-from-cart", {
           headers: {
             id: localStorage.getItem("id"),
             Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
@@ -27,7 +27,7 @@ const Cart = () => {
   }, [Cart]);
 
   const deleteItem = async (bookid) => {
-    const res = await axios.put(`http://localhost:1000/api/users/remove-from-cart/${bookid}`,{}, {
+    const res = await axios.put(`https://books-1hil.onrender.com/api/users/remove-from-cart/${bookid}`,{}, {
       headers: {
         id: localStorage.getItem("id"),
         Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
