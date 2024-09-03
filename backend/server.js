@@ -7,7 +7,7 @@ const app = express();
 
 const port = process.env.PORT ||5000;
 app.use(cors({
-    origin: 'http://localhost:5173', // The origin of your frontend application
+    origin: 'https://books-4-trks.onrender.com', // The origin of your frontend application
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization','id','bookid'], // Ensure 'Authorization' is included
   }));
